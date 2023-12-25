@@ -1,0 +1,102 @@
+<div class="row" style="margin-bottom:5%">
+  <div class="col-xs-10">
+    <app-shopping-edit></app-shopping-edit>
+    <br />
+    <!-- <ul class="list-group">
+       <a
+        class="list-group-item"
+        style="cursor:pointer;"
+        *ngFor="let ingredient of ingredients"
+      >
+        {{ ingredient.name }} ({{ ingredient.amount }})
+        <span class="float-end"
+          ><button class="btn btn-danger" (click)="onDelete(ingredient)">
+            Delete
+          </button>
+        </span>
+      </a> 
+    </ul> -->
+    <table class="table table-light" style="margin-bottom:15%">
+      <thead>
+        <tr>
+          <th scope="col"><h6>Name</h6></th>
+          <th scope="col"><h6>Quantity</h6></th>
+          <th scope="col"><h6>Purchase date</h6></th>
+          <th scope="col"><h6>Place</h6></th>
+          <th scope="col"><h6>Price</h6></th>
+          <th scope="col"><h6>Edit</h6></th>
+          <th scope="col"><h6>Delete</h6></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ingredient of ingredients; let i = index">
+          <td scope="row">{{ ingredient.name }}</td>
+          <td scope="row">{{ ingredient.amount }}</td>
+          <td scope="row">{{ ingredient.purchaseDate | date: 'shortDate' }}</td>
+          <td scope="row">{{ ingredient.place }}</td>
+          <td scope="row">{{ ingredient.price | decimalValue }}</td>
+          <td scope="row">
+            <button class="btn btn-warning" (click)="onEditItem(i)" [id]="i">
+              Edit
+            </button>
+          </td>
+          <td scope="row">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-toggle="modal"
+              data-bs-target="#myModal"
+              (click)="getIndex(i)"
+            >
+              Delete
+            </button>
+            <!-- The Modal -->
+            <div class="modal" id="myModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Delete ingredient</h4>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                    ></button>
+                  </div>
+
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    Are you sure to delete this ingredient?
+                  </div>
+
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <div class="float-start">
+                      <button
+                        type="button"
+                        class="btn btn-info"
+                        data-bs-dismiss="modal"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                    <div class="float-end">
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        (click)="onDelete(currentIndex)"
+                        data-bs-dismiss="modal"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

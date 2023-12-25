@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-xs-12">
+    <img
+      [src]="recipe.imagePath"
+      alt="{{ recipe.name }}"
+      class="img-responsie"
+      style="max-height:150px;"
+    />
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ recipe.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="btn-group">
+      <!-- <button type="button" class="btn btn-primary dropdown-toggle">
+        Manage Recipe
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">To shopping list</a></li>
+        <li><a href="#">Edit recipe</a></li>
+        <li><a href="#">Delete recipe</a></li>
+      </ul> -->
+      <select name="manage" id="manageRecipe" class="btn btn-warning" [(ngModel)]="chosenMod"
+      (ngModelChange)="modo()"> 
+        <option value="none" selected disabled >Manage recipe</option>
+        <option value="shopping list"><a href="#">To shopping list</a></option>
+        <option value="edit recipe"><a (click)="onEditRecipe()">Edit recipe</a></option>
+        <option value="delete recipe"><a href="#" (click)="onDeleteRecipe()">Delete Recipe</a></option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">{{ recipe.description }}</div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">Ingredients</div>
+</div>

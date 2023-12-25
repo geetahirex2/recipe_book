@@ -1,0 +1,57 @@
+<nav class="navbar navbar-dark bg-dark navbar-expand-sm fixedHeader">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a routerLink="/" class="navbar-brand">Recipe Book</a>
+    </div>
+    <div class="navbar navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a routerLinkActive="active" routerLink="/recipes" class="nav-link"
+            >Recipes
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a
+            routerLinkActive="active"
+            routerLink="/authenticate"
+            class="nav-link"
+            >Authenticate
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            routerLinkActive="active"
+            routerLink="/shopping-list"
+            class="nav-link"
+            >Shopping List</a
+          >
+        </li>
+      </ul>
+
+      <select
+        name="manage"
+        id="manageRecipe"
+        class="btn bg-transparent text-white"
+        style="margin-left:60%"
+        ngModel
+        *ngIf="isAuthenticated"
+        [(ngModel)]="chosenMod"
+        (ngModelChange)="modo()"
+      >
+        <option value="none" selected disabled style="color:white">
+          Manage
+        </option>
+        <option value="save" class="text-dark">
+          <a (click)="onSaveData()">Save Data</a>
+        </option>
+        <option value="fetch" class="text-dark">
+          <a (click)="onFetchData()">Fetch Data</a>
+        </option>
+      </select>
+
+      <li class="nav-item" *ngIf="isAuthenticated" style="margin-right:3%;">
+        <a style="cursor:pointer; color:white" (click)="onLogout()">Logout</a>
+      </li>
+    </div>
+  </div>
+</nav>
